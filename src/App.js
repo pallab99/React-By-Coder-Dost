@@ -1,23 +1,21 @@
 import Video from "./components/Video";
 import "./App.css";
+import videos from "./Data/data";
 function App() {
-  let obj = {
-    title: "React Js Tutorial",
-    channel: "Coder Dost",
-    views: "999K",
-    time: "1 year ago",
-  };
   return (
     <div className="App">
-      <div>Hello World</div>
-      <Video {...obj}></Video>
-      <Video title="Node Js Tutorial" views="100K" time="1 month ago"></Video>
-      <Video
-        title="MongoDb Tutorial"
-        channel="Coder Dost"
-        views="10M"
-        time="2 months ago"
-      ></Video>
+      <div>Videos</div>
+      {videos.map((video) => (
+        <Video
+          key={video.id}
+          title={video.title}
+          channel={video.channel}
+          views={video.views}
+          time={video.time}
+          varified={video.varified}
+          id={video.id}
+        ></Video>
+      ))}
     </div>
   );
 }
