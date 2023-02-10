@@ -1,6 +1,14 @@
 import "./Video.css";
 
-function Video({ title, channel = "Coder Dost", views, time, varified, id }) {
+function Video({
+  title,
+  channel = "Coder Dost",
+  views,
+  time,
+  varified,
+  id,
+  children,
+}) {
   return (
     <div className="container">
       <img
@@ -14,6 +22,7 @@ function Video({ title, channel = "Coder Dost", views, time, varified, id }) {
       <div className="views">
         {views} views <span>.</span> {time}
       </div>
+      <div>{children}</div>
     </div>
   );
 }
