@@ -1,6 +1,6 @@
 import "./AddVideo.css";
-import { useState } from "react";
-function AddVideo({ addVideos }) {
+import { useEffect, useState } from "react";
+function AddVideo({ addVideos, editableVideo, updateVideo }) {
   const initialState = {
     channel: "Coder Dost",
     time: "1 year ago",
@@ -12,13 +12,22 @@ function AddVideo({ addVideos }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    addVideos(video);
+    if (editableVideo) {
+      updateVideo(video);
+    } else {
+      addVideos(video);
+    }
     setVideo(initialState);
   }
   function handleChange(e) {
     e.stopPropagation();
     setVideo({ ...video, [e.target.name]: e.target.value });
   }
+
+  useEffect(() => {
+    if (editableVideo) setVideo(editableVideo);
+  }, [editableVideo]);
+
   return (
     <form>
       <input
@@ -35,24 +44,8 @@ function AddVideo({ addVideos }) {
         placeholder="Views"
         value={video.views}
       />
-      <button
-        onClick={handleSubmit}
-        //   onClick={(e) => {
-        // e.stopPropagation();
-        // setVideos([
-        //   ...videos,
-        //   {
-        //     id: videos.length + 1,
-        //     title: "Demo Tutorial",
-        //     channel: "Coder Dost",
-        //     views: "999K",
-        //     time: "1 year ago",
-        //     varified: true,
-        //   },
-        // ]);
-        //   }}
-      >
-        Add Videos
+      <button onClick={handleSubmit}>
+        {editableVideo ? "Edit" : "Add"} Videos
       </button>
     </form>
   );
