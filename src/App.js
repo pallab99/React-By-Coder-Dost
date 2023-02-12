@@ -6,6 +6,7 @@ import VideoList from "./components/VideoList";
 import ThemeContext from "./Context/ThemeContext";
 import VideosContext from "./Context/VideosContext";
 import VideoDispatchContext from "./Context/VideosDispatchContext";
+import Counter from "./components/Counter_";
 
 function App() {
   const [editableVideo, seteditableVideo] = useState(0);
@@ -58,13 +59,13 @@ function App() {
   // }
 
   const themeContext = useContext(ThemeContext);
-  console.log({ themeContext });
 
   return (
     <ThemeContext.Provider value={mode}>
       <VideosContext.Provider value={videos}>
         <VideoDispatchContext.Provider value={dispatch}>
           <div className={`App ${mode}`} onClick={() => console.log("App")}>
+            <Counter></Counter>
             <button
               onClick={() => {
                 if (mode === "darkMode") {
