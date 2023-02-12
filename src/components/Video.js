@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import "./Video.css";
+import ThemeContext from "../Context/ThemeContext";
+import useVideoDispatch from "./Hooks/VideoDispatchHook";
 
 function Video({
   title,
@@ -8,31 +11,39 @@ function Video({
   varified,
   id,
   children,
-  deleteVideo,
-  editVideo
+  editVideo,
 }) {
+  const theme = useContext(ThemeContext);
+  const dispatch = useVideoDispatch();
+
   return (
     <>
-    <div className="container">
-      
-       <button className="close" onClick={()=>deleteVideo(id)}>X</button>
-       <button className="edit" onClick={()=>editVideo(id)}>Edit</button>
-      
-      <div className="pic">
-      <img
-        src={`https://picsum.photos/id/${id}/160/90`}
-        alt="Katherine Johnson"
-      />
+      <div className={`container ${theme}`}>
+        <button
+          className="close"
+          onClick={() => dispatch({ type: "DELETE", payload: id })}
+        >
+          X
+        </button>
+        <button className="edit" onClick={() => editVideo(id)}>
+          Edit
+        </button>
+
+        <div className="pic">
+          <img
+            src={`https://picsum.photos/id/${id}/160/90`}
+            alt="Katherine Johnson"
+          />
+        </div>
+        <div className="title">{title}</div>
+        <div className="channel">
+          {channel} {varified && "✅"}
+        </div>
+        <div className="views">
+          {views} views <span>.</span> {time}
+        </div>
+        <div>{children}</div>
       </div>
-      <div className="title">{title}</div>
-      <div className="channel">
-        {channel} {varified && "✅"}
-      </div>
-      <div className="views">
-        {views} views <span>.</span> {time}
-      </div>
-      <div>{children}</div>
-    </div>
     </>
   );
 }

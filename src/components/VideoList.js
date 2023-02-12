@@ -1,7 +1,9 @@
 import Video from "./Video";
 import PlayButton from "./PlayButton";
+import useVideos from "./Hooks/VideoHook";
 
-function VideoList({ videos ,deleteVideo,editVideo}) {
+function VideoList({ editVideo }) {
+  const videos = useVideos();
   return (
     <div>
       {videos.map((video) => (
@@ -13,7 +15,6 @@ function VideoList({ videos ,deleteVideo,editVideo}) {
           time={video.time}
           varified={video.varified}
           id={video.id}
-          deleteVideo={deleteVideo}
           editVideo={editVideo}
         >
           <PlayButton

@@ -1,12 +1,24 @@
 button{
-    background-color: royalblue;
-    border: 2px solid black;
     padding: 1em;
     border-radius: 1em;
-    color: white;
     cursor: pointer;
 }
-button:hover{
+button.darkMode:hover{
     background-color: blue;
     color: white;
+}
+button.darkMode, .darkMode button{
+    background-color: royalblue;
+    border: 2px solid black;
+    color: white;
+}
+button.lightMode:hover{
+    background-color: blue;
+    color: white;
+}
+button.lightMode,.lightMode button{
+    background-color: royalblue;
+    border: 2px solid black;
+    color: black;
+
 }
