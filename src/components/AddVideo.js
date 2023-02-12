@@ -32,7 +32,7 @@ function AddVideo({ editableVideo, updateVideo }) {
 
   useEffect(() => {
     if (editableVideo) setVideo(editableVideo);
-    inputRef.current.focus();
+   // inputRef.current.focus();
   }, [editableVideo]);
 
   return (

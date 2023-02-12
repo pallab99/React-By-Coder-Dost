@@ -1,9 +1,23 @@
 import Video from "./Video";
 import PlayButton from "./PlayButton";
 import useVideos from "./Hooks/VideoHook";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 function VideoList({ editVideo }) {
-  const videos = useVideos();
+  const url="http://localhost:8000/video";
+  const [videos,setVideos]=useState([]);
+
+  async function handleClick()
+  {
+    const res=await axios.get(url);
+    setVideos(res.data);
+    console.log('Ok',res.data);
+  }
+  useEffect(()=>{
+   handleClick();
+  },[])
+
+  // const videos = useVideos();
   return (
     <div>
       {videos.map((video) => (
@@ -25,6 +39,8 @@ function VideoList({ editVideo }) {
           </PlayButton>
         </Video>
       ))}
+        {/* <button onClick={handleClick}>Get Videos</button> */}
+
     </div>
   );
 }

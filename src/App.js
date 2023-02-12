@@ -60,6 +60,7 @@ function App() {
 
   const themeContext = useContext(ThemeContext);
 
+
   return (
     <ThemeContext.Provider value={mode}>
       <VideosContext.Provider value={videos}>
